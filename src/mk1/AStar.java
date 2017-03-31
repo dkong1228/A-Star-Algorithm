@@ -26,7 +26,7 @@ public class AStar extends AbstractSearch{
 		this.adjMatrix = adjMatrix;
 	}
 	
-	public AStar(Node start, Node goal, int size){
+	public AStar(Node start, Node goal, int[][] graph, int size){
 		super(start, goal);
 		this.grid = new Node [size][size];
 	}
@@ -46,12 +46,14 @@ public class AStar extends AbstractSearch{
 	 * @return Euclidean distance from current to goal Node
 	 */
 	private double calcDist(Node current){
-		return ;
+		double x = (current.getPosX()-this.goalNode.getPosX())*(current.getPosX()-this.goalNode.getPosX());
+		double y = (current.getPosY()-this.goalNode.getPosY())*(current.getPosY()-this.goalNode.getPosY());
+		return Math.sqrt(x + y);
 	}
 
 	@Override
 	public boolean search() {
-		System.out.println("Dijkrsta's Algorithmn:");
+		System.out.println("AStar Algorithmn:");
 		this.startNode.setDistance(0);
 		PriorityQueue<Node> unexplored = new PriorityQueue<Node>();
 		unexplored.add(startNode);
