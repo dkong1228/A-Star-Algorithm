@@ -14,6 +14,7 @@ public class AStar extends AbstractSearch{
 	 */
 	private int [][] adjMatrix;
 	private Node [][] grid;
+	private int [][] graph;
 	private int size;
 	/**
 	 * Constructs the A-StarAlgorithmn
@@ -28,7 +29,20 @@ public class AStar extends AbstractSearch{
 	
 	public AStar(Node start, Node goal, int[][] graph, int size){
 		super(start, goal);
+		this.graph = graph;
 		this.grid = new Node [size][size];
+		this.grid[start.getPosY()][start.getPosX()] = start;
+		this.grid[goal.getPosY()][goal.getPosX()] = goal;
+		this.size = size;
+		
+		for(int i = 0; i < size; i++){
+			for(int j = 0; j < size; j++){
+				if(grid[i][j] != start && grid[i][j] != goal){
+					grid[i][j] = new Node(i,j);
+					grid[i][j].setCost(calcDist(grid[i][j]));
+				}
+			}
+		}
 	}
 	/**
 	 * Uses our grid to determine which
@@ -54,7 +68,6 @@ public class AStar extends AbstractSearch{
 	@Override
 	public boolean search() {
 		System.out.println("AStar Algorithmn:");
-		this.startNode.setDistance(0);
 		PriorityQueue<Node> unexplored = new PriorityQueue<Node>();
 		unexplored.add(startNode);
 		ArrayList<Node> explored = new ArrayList<Node>();
@@ -67,13 +80,7 @@ public class AStar extends AbstractSearch{
 			}
 			else{
 				for (Node x : current.getChildren()){
-					if (!unexplored.contains(x) && !explored.contains(x)){
-						x.setDistance(current.getDistance() + this.adjMatrix[current.getIndex()][x.getIndex()]);
-						x.setParent(current);
-						unexplored.add(x);
-					}
-					else if (x.getDistance() > current.getDistance() + this.adjMatrix[current.getIndex()][x.getIndex()]){
-						x.setDistance(current.getDistance() + this.adjMatrix[current.getIndex()][x.getIndex()]);
+					if (calcDist(x) < calcDist(current) && !(graph[x.getPosY()][x.getPosX()]==0)){
 						x.setParent(current);
 					}
 				}

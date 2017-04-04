@@ -18,7 +18,7 @@ public class Node implements Comparable<Node>{
 	private Node parent;
 	private int minDistance = Integer.MAX_VALUE;
 	private int index;
-	private int cost;
+	private double cost;
 	private int posX;
 	private int posY;
 	
@@ -90,11 +90,15 @@ public class Node implements Comparable<Node>{
 	 */
 	@Override
 	public int compareTo(Node other) {
-		return this.cost - other.getCost();
+		return (int)this.cost - (int)other.getCost();
 	}
 
-	private int getCost() {
+	public double getCost() {
 		return this.cost;
+	}
+	
+	public void setCost(double c){
+		this.cost = c;
 	}
 
 	public int getIndex() {
