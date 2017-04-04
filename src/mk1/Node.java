@@ -40,7 +40,7 @@ public class Node implements Comparable<Node>{
 		this.posX = x;
 		this.posY = y;
 	}
-	/*
+	/*Do not use this for AStar
 	 * @return The children of the Node
 	 */
     public ArrayList<Node> getChildren(){

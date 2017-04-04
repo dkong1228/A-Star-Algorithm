@@ -79,6 +79,7 @@ public class AStar extends AbstractSearch{
 				return true;
 			}
 			else{
+				//Fix get children to reflect d-Pad in graph
 				for (Node x : current.getChildren()){
 					if (calcDist(x) < calcDist(current) && !(graph[x.getPosY()][x.getPosX()]==0)){
 						x.setParent(current);
