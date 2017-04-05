@@ -37,6 +37,7 @@ public class Node implements Comparable<Node>{
 	}
 	
 	public Node(int x , int y){
+		this.name = "(" + x + "," + y + ")";
 		this.posX = x;
 		this.posY = y;
 	}
@@ -71,7 +72,7 @@ public class Node implements Comparable<Node>{
      * @param distance to parent Node
      */
     public void setDistance(int distance){
-    	minDistance=distance;
+    	this.minDistance = distance;
     }
     public int getDistance(){
     	return this.minDistance;
@@ -90,7 +91,7 @@ public class Node implements Comparable<Node>{
 	 */
 	@Override
 	public int compareTo(Node other) {
-		return (int)this.cost - (int)other.getCost();
+		return Double.compare(this.cost, other.getCost());
 	}
 
 	public double getCost() {
