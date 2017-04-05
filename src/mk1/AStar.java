@@ -41,15 +41,16 @@ public class AStar extends AbstractSearch{
 		}
 	}
 	/**
-	 * Uses our grid to determine which
-	 * directions we can move from our current node
+	 * Uses our grid to determine the children
+	 * we have from our current node.
 	 * @param current Node
-	 * @return a list of those nodes
+	 * @return a list of the children nodes
 	 */
 	private ArrayList<Node> getChildren(Node current){
 		int x = current.getPosX();
 		int y = current.getPosY();
 		ArrayList<Node> children = new ArrayList<Node>();
+		//Makes sure the current Node position is not on the "edges" of the Array.
 		if (y < size-1){
 			if (graph[x][y+1]!=0){
 				children.add(grid[x][y+1]);
@@ -74,7 +75,7 @@ public class AStar extends AbstractSearch{
 	}
 	
 	/**
-	 * 
+	 * Distance Formula
 	 * @param current Node
 	 * @return Euclidean/Heuristic distance from current to goal Node
 	 */

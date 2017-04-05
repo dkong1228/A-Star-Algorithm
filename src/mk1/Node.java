@@ -69,7 +69,7 @@ public class Node implements Comparable<Node>{
     }
     /**
      * Sets the distance of the Node
-     * @param distance to parent Node
+     * @param distance from the start Node
      */
     public void setDistance(int distance){
     	this.minDistance = distance;
